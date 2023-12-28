@@ -1,0 +1,216 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --Dark-Blue : hsl(209, 23%, 22%);
+--Very-Dark-Blue : hsl(207, 26%, 17%);
+--Very-Dark-Blue-Light-mode : hsl(200, 15%, 8%);
+--Dark-Gray: hsl(0, 0%, 52%);
+--Very-Light-Gray: hsl(0, 0%, 98%);
+--White: hsl(0, 0%, 100%);
+}
+body{
+    background-color: var(--Very-Light-Gray);
+}
+.cardContainer{
+    width: 350px;
+    height: 50%;
+    margin-block: 2vh;
+    margin-inline: 2vw;
+    padding-bottom: 4vh;
+    background-color: var(--White);
+    color: black;
+    box-shadow: 2px 2px 5px rgba(5, 5, 5, 0.413);
+    
+}
+.search-box{
+    background-color: white;
+    border: none;
+    /* box-shadow: 2px 2px 5px rgba(5, 5, 5, 0.413); */
+}
+body{
+    overflow-x: hidden;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 300;
+}
+.flag-img{
+    width: 100%;
+    height: 200px;
+}
+.information-section{
+    width: 100%;
+    height: 100%;
+    /* padding-left: 8vw; */
+    /* margin-right: 9vw; */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--Very-Light-Gray);
+}
+.cardContainer ul{
+    list-style-type: none;
+    padding-inline: 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+}
+
+span{
+    /* display: flex; */
+    /* width: fit-content; */
+    font-weight: 600;
+}
+.dark-mode{
+    margin-top: 0.5vh;
+    display: flex;
+    cursor: pointer;
+    /* justify-content: space-between; */
+}
+.dark-mode ion-icon{
+    
+    height: 2vh;
+    margin-right: 0.5vw;
+}
+.feature-bar{
+    padding-block: 1vw;
+    padding-inline: 7vw;
+    background-color: var(--Very-Light-Gray);
+    display: flex;
+    justify-content: space-between;
+}
+.feature-bar input{
+    /* height: 90%; */
+    width: 100%;
+    /* box-shadow: 1px 1px 2px rgba(5, 5, 5, 0.413); */
+
+    /* border: 2px solid rgba(72, 72, 72, 0.498); */
+}
+.feature-bar input:focus{
+    outline: none;
+}
+.fa-solid{
+    background-color: var(--White);
+    color: black;
+}
+.search-feature{
+    background-color: var(--White);
+    display: flex;
+    align-items: center;
+    width: 30%;
+    border: 2px solid rgba(72, 72, 72, 0.1); 
+    border-radius: 3px;
+}
+.drop-select {
+    background-color: #ffffff;
+    color: rgb(10, 10, 10);
+    /* border: 2px solid black; */
+    border-radius: 5px;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px rgba(5, 5, 5, 0.413);
+  }
+  .drop-select a{
+    background-color: red;
+  }
+  /* .drop-select option{
+    background-color: var(--Dark-Blue);
+  } */
+  .country-name{
+    padding-top: 3vh;
+    padding-left: 1vw;
+    padding-bottom: 2vh;
+    font-weight: 800;
+  }
+  .dark-text{
+    font-weight: 800;
+  }
+  i{
+    padding-inline: 1vw;
+  }
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropbtncontent {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropbtncontent:hover {background-color: #f1f1f1}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  .darkBlue{
+    background-color: var(--Dark-Blue);
+    color: white !important;
+  }
+  .veryDarkBlue{
+    background-color: var(--Very-Dark-Blue);
+    color: white;
+  }
+  @media(max-width:700px){
+    .feature-bar{
+        /* height: 10vh; */
+        flex-direction: column;
+        padding-top: 3vh;
+    }
+    .drop-select{
+        margin-top: 1vh;
+    }
+    .feature-bar input{
+        width: 100%;
+    }
+    .feature-bar input[type=text]:focus{
+        /* background-color: red; */
+        outline: none;
+    }
+    .search-box{
+        /* width: 100%; */
+        height: 4vh;
+    }
+    .search-feature{
+        height: 5vh;
+        width: 100%;
+    }
+    /* .nav-bar{
+        flex-direction: column;
+    }
+    .dark-mode{
+        margin-top: 2vh;
+    } */
+    /* .cardContainer{
+        width: 80%;
+    } */
+  }
+  @media(max-width:450px){
+    .nav-bar h2{
+        font-size: 0.8rem;
+    }
+    .dark-mode{
+        font-size: 0.8rem;
+        margin-top: 0.4vh;
+    }
+  }
