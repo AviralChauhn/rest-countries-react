@@ -66,6 +66,7 @@ export default function FeatureBar(props) {
           filteredData.sort((a,b)=>b.population-a.population)
         }
         setSelectedSort(sortValue)
+        setSelectedAreaSort("All")
       }
       function handleAreaSorting(event){
         const areaSortValue=event.target.value
@@ -75,6 +76,7 @@ export default function FeatureBar(props) {
           filteredData.sort((a,b)=>b.area-a.area)
         }
         setSelectedAreaSort(areaSortValue)
+        setSelectedSort("All")
       }
       function region(){
         country.forEach((item)=>{
