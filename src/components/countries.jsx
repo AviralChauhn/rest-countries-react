@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import './countries.css'
 import './FeatureBar.css'
-// import { Audio } from 'react-loader-spinner'
+import { ThreeCircles } from 'react-loader-spinner'
 // import FeatureBar from './FeatureBar'
 const API_URL="https://restcountries.com/v3.1/all"
 export default function Countries(props) {
     const {filteredData}=props;
     // console.log(filteredData)
-    let [country,setCountry]=useState([])
-    const [search,setSearch]=useState("");
-    const [selectedRegion,setSelectedRegion]=useState("All")
+    // let [country,setCountry]=useState([])
+    // const [search,setSearch]=useState("");
+    // const [selectedRegion,setSelectedRegion]=useState("All")
     // const [filteredCountries,setFilteredCountries]=useState([])
     // const fetchData=()=>{
     //   fetch(API_URL).then((data)=>data.json()).then((data)=>{setCountry(data)})
@@ -36,8 +36,9 @@ export default function Countries(props) {
   return (
     // <section>
     <section className='information-section'>
-      {filteredData.map((item)=>{
-       return<div className='cardContainer' key={item.name.common}> 
+      {filteredData.length?(
+      filteredData.map((item)=>{
+      return <div className='cardContainer' key={item.name.common}> 
        <img src={item.flags.png} alt={item.name.common} className='flag-img'/>
         <h3 className='country-name'>{item.name.common}</h3>
         <ul>
@@ -46,8 +47,19 @@ export default function Countries(props) {
         <li><span>Region: </span>{item.region}</li>
         </ul>
         </div>
-      })}
+})):<ThreeCircles
+visible={true}
+height="100"
+width="100"
+color="#4fa94d"
+ariaLabel="three-circles-loading"
+wrapperStyle={{}}
+wrapperClass=""
+/>}
     </section>
+      )
+    }
+    
     /* <FeatureBar country={country} setCountry={setCountry}/> */
     /* <section className="feature-bar">
       <div className="search-feature">
@@ -96,5 +108,3 @@ export default function Countries(props) {
           <option value="Oceania" className="dropbtncontent">Oceania</option>
         </div> */
       /* </div> */
-  )
-}
