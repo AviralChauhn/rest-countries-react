@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './FeatureBar.css';
 import Countries from './countries.jsx'
+import { ThemeContext } from '../App.jsx';
 // let rawData;
 // let filteredData;
 export default function FeatureBar(props) {
     const{country}=props
+    const {theme}=useContext(ThemeContext)
     let subRegionData=[];
     let regionData=[];
     const [filteredData,setFilteredData]=useState(country)
@@ -98,22 +100,22 @@ export default function FeatureBar(props) {
         })
       }
       subRegion()
-      console.log(subRegionData)
+      // console.log(subRegionData)
   return (
     <>
-    <section className="feature-bar">
-      <div className="search-feature">
-        <i className="fa-solid fa-magnifying-glass"></i>
+    <section className="feature-bar" id={theme}>
+      <div className="search-feature" id={theme}>
+        <i className="fa-solid fa-magnifying-glass" id={theme}></i>
         <input
           type="text"
           className="search-box"
           placeholder="Search for country ..."
-          id="search-bar"
+          id={theme}
           onChange={(e)=>handleSearch(e)}
         />
       </div>
         <div>
-          <select value={selectedSubRegion} className='drop-select' onChange={(event)=>handleSubRegionChange(event)} >
+          <select value={selectedSubRegion} className='drop-select' id={theme} onChange={(event)=>handleSubRegionChange(event)} >
             <option value="All" defaultValue={selectedSubRegion} className='dropbtncontent'>
               Filter by Subregion..
               </option>
@@ -147,34 +149,38 @@ export default function FeatureBar(props) {
         <select
           value={selectedSort}
           className="drop-select"
+          id={theme}
           onChange={(event)=>handleSorting(event)}
         >
           <option
             value="All"
             className="dropbtncontent"
+            id={theme}
             defaultValue={selectedSort}
           >
             Sort According to Population
           </option>
-          <option className="dropbtncontent">Ascending</option>
-          <option className="dropbtncontent">Descending</option>
+          <option className="dropbtncontent" id={theme}>Ascending</option>
+          <option className="dropbtncontent" id={theme}>Descending</option>
           </select>
           </div>
       <div className="dropdown">
         <select
           value={selectedAreaSort}
           className="drop-select"
+          id={theme}
           onChange={(event)=>handleAreaSorting(event)}
         >
           <option
             value="All"
             className="dropbtncontent"
+            id={theme}
             defaultValue={selectedAreaSort}
           >
             Sort According to Area
           </option>
-          <option className="dropbtncontent">Ascending</option>
-          <option className="dropbtncontent">Descending</option>
+          <option className="dropbtncontent" id={theme}>Ascending</option>
+          <option className="dropbtncontent" id={theme}>Descending</option>
           </select>
           </div>
         
@@ -182,11 +188,13 @@ export default function FeatureBar(props) {
         <select
           value={selectedRegion}
           className="drop-select"
+          id={theme}
           onChange={(event)=>handleRegionChange(event)}
         >
           <option
             value="All"
             className="dropbtncontent"
+            id={theme}
             defaultValue={selectedRegion}
           >
             Filter By region 
@@ -197,7 +205,7 @@ export default function FeatureBar(props) {
         </select>
       </div>
     </section>
-      <Countries filteredData={filteredData}/>
+      <Countries filteredData={filteredData} search={search}/>
       </>
   );
 }

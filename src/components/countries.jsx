@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './countries.css'
 import './FeatureBar.css'
+import { ThemeContext } from '../App.jsx'
 import { ThreeCircles } from 'react-loader-spinner'
 // import FeatureBar from './FeatureBar'
 const API_URL="https://restcountries.com/v3.1/all"
 export default function Countries(props) {
-    const {filteredData}=props;
+  const {theme}=useContext(ThemeContext)
+    const {filteredData,search}=props;
     // console.log(filteredData)
     // let [country,setCountry]=useState([])
     // const [search,setSearch]=useState("");
@@ -35,7 +37,7 @@ export default function Countries(props) {
     // }
   return (
     // <section>
-    <section className='information-section'>
+    <section className='information-section' id={theme}>
       {filteredData.length?(
       filteredData.map((item)=>{
       return <div className='cardContainer' key={item.name.common}> 
@@ -47,15 +49,16 @@ export default function Countries(props) {
         <li><span>Region: </span>{item.region}</li>
         </ul>
         </div>
-})):<ThreeCircles
-visible={true}
-height="100"
-width="100"
-color="#4fa94d"
-ariaLabel="three-circles-loading"
-wrapperStyle={{}}
-wrapperClass=""
-/>}
+})):(!search?(<ThreeCircles
+  visible={true}
+  height="100"
+  width="100"
+  color="#4fa94d"
+  ariaLabel="three-circles-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  />):<h2>No Such Countries found........</h2>
+  )}
     </section>
       )
     }
