@@ -35,7 +35,7 @@
     border: none;
     box-shadow: 2px 2px 5px rgba(5, 5, 5, 0.413);
 }
-
+i{background-color: transparent;}
 .parentContainer{
     height: 100vh;
 }

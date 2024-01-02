@@ -28,7 +28,7 @@ const Details = (props) => {
     {details.length?(
     <div className='parentContainer' id={theme}>
     <Link to="/">
-     <button className='backButton' id={theme}><i className="fa-solid fa-arrow-left"></i>Back</button>
+     <button className='backButton' id={theme}><i className="fa-solid fa-arrow-left" id={theme}></i>Back</button>
      </Link>
      {details.map((item)=>{
        return  <>
