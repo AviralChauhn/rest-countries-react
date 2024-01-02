@@ -1,55 +1,24 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './FeatureBar.css';
 import Countries from './countries.jsx'
+import Dropdown from './dropDownFeature.jsx';
 import { ThemeContext } from '../App.jsx';
-// let rawData;
-// let filteredData;
 export default function FeatureBar(props) {
+  const {theme}=useContext(ThemeContext)
     const{country}=props
-    const {theme}=useContext(ThemeContext)
     let subRegionData=[];
     let regionData=[];
-    const [filteredData,setFilteredData]=useState(country)
     const [search,setSearch]=useState("");
     const [selectedRegion,setSelectedRegion]=useState("All")
     const [selectedSubRegion,setSelectedSubRegion]=useState("All")
     const [selectedSort,setSelectedSort]=useState("All")
     const [selectedAreaSort,setSelectedAreaSort]=useState("All")
-    // rawData=country
-    // const [searchCountry,setSearchCountry]=useState("")
-    // filteredData=country
-    // const handleSearch = (e) => {
-      // let filteredData;
-        // const searchValue = e.target.value.toLowerCase();
-        // console.log(country)
-      //      setFilteredData(country.filter((item) =>
-      //       item.name.common.toLowerCase().includes(e.target.value.toLowerCase())
-      //       ))
-      // };
-      // const handleRegion=(event)=>{
-        // setSelectedRegion(event.target.value)
-        // console.log(event.target.value)
-      //   if(event.target.value==="All"){
-      //     setFilteredData(country)
-      //   }else{
-      //   setFilteredData(country.filter((item)=>
-      //     item.region === event.target.value
-      //   ))}
-      // }
-      // const handleRegionChange=(e)=>{
-      //   setSelectedRegion(e.target.value)
-        // handleRegion(e)
-      // }
-      useEffect(()=>{
         const filtered=country.filter((country)=>{
           const searchFilter=country.name.common.toLowerCase().includes(search.toLowerCase())
           const regionFilter=selectedRegion==='All'||country.region===selectedRegion
           const subRegionFilter=selectedSubRegion==='All'||country.subregion===selectedSubRegion
           return searchFilter && regionFilter && subRegionFilter
         })
-        setFilteredData(filtered)
-      },[country,search,selectedRegion,selectedSubRegion])
-  
       const handleSearch=(e)=>{
         setSearch(e.target.value)
       }
@@ -60,26 +29,20 @@ export default function FeatureBar(props) {
       const handleSubRegionChange=(event)=>{
         setSelectedSubRegion(event.target.value)
       }
-      function handleSorting(event){
-        const sortValue=event.target.value
-        if(sortValue=="Ascending"){
-          filteredData.sort((a,b)=>a.population-b.population)
-        }else if(sortValue=="Descending"){
-          filteredData.sort((a,b)=>b.population-a.population)
+        
+        if(selectedSort=="Ascending"){
+          filtered.sort((a,b)=>a.population-b.population)
+        }else if(selectedSort=="Descending"){
+          filtered.sort((a,b)=>b.population-a.population)
         }
-        setSelectedSort(sortValue)
-        setSelectedAreaSort("All")
-      }
-      function handleAreaSorting(event){
-        const areaSortValue=event.target.value
-        if(areaSortValue=="Ascending"){
-          filteredData.sort((a,b)=>a.area-b.area)
-        }else if(areaSortValue=="Descending"){
-          filteredData.sort((a,b)=>b.area-a.area)
+        
+      
+        if(selectedAreaSort=="Ascending"){
+          filtered.sort((a,b)=>a.area-b.area)
+        }else if(selectedAreaSort=="Descending"){
+          filtered.sort((a,b)=>b.area-a.area)
         }
-        setSelectedAreaSort(areaSortValue)
-        setSelectedSort("All")
-      }
+      
       function region(){
         country.forEach((item)=>{
           if(!regionData.includes(item.region)){
@@ -100,7 +63,6 @@ export default function FeatureBar(props) {
         })
       }
       subRegion()
-      // console.log(subRegionData)
   return (
     <>
     <section className="feature-bar" id={theme}>
@@ -114,98 +76,41 @@ export default function FeatureBar(props) {
           onChange={(e)=>handleSearch(e)}
         />
       </div>
-        <div>
-          <select value={selectedSubRegion} className='drop-select' id={theme} onChange={(event)=>handleSubRegionChange(event)} >
-            <option value="All" defaultValue={selectedSubRegion} className='dropbtncontent'>
-              Filter by Subregion..
-              </option>
-              {subRegionData.map((item,index)=>{
-               return <option key={index}>{item}</option>
-              })}
-          </select>
-        </div>
-        
-      {/* <div className="dropdown">
-        <select
+      <Dropdown
+          options={subRegionData}
+          value={selectedSubRegion}
+          onChange={(e) => setSelectedSubRegion(e.target.value)}
+          placeholder="Filter by Subregion"
+        />
+      <Dropdown
+          options={regionData}
           value={selectedRegion}
-          className="drop-select"
-          onChange={(event)=>handleRegionChange(event)}
-        >
-          <option
-            value="All"
-            className="dropbtncontent"
-            defaultValue={selectedRegion}
-          >
-            Filter By Sub-Region 
-          </option>
-          <option value="Africa" className="dropbtncontent">Africa</option>
-          <option value="Americas" className="dropbtncontent">Americas</option>
-          <option value="Asia" className="dropbtncontent">Asia</option>
-          <option value="Europe" className="dropbtncontent">Europe</option>
-          <option value="Oceania" className="dropbtncontent">Oceania</option>
-        </select>
-      </div> */}
-      <div className="dropdown">
-        <select
+          onChange={(e) => {
+            setSelectedRegion(e.target.value)
+            setSelectedSubRegion("All")
+          }}
+          placeholder="Filter by Region"
+        />
+      <Dropdown
+          options={["Ascending", "Descending"]}
           value={selectedSort}
-          className="drop-select"
-          id={theme}
-          onChange={(event)=>handleSorting(event)}
-        >
-          <option
-            value="All"
-            className="dropbtncontent"
-            id={theme}
-            defaultValue={selectedSort}
-          >
-            Sort According to Population
-          </option>
-          <option className="dropbtncontent" id={theme}>Ascending</option>
-          <option className="dropbtncontent" id={theme}>Descending</option>
-          </select>
-          </div>
-      <div className="dropdown">
-        <select
+          onChange={(e) => {
+            setSelectedSort(e.target.value);
+            setSelectedAreaSort("All");
+          }}
+          placeholder="Sort by Population"
+        />
+      <Dropdown
+          options={["Ascending", "Descending"]}
           value={selectedAreaSort}
-          className="drop-select"
-          id={theme}
-          onChange={(event)=>handleAreaSorting(event)}
-        >
-          <option
-            value="All"
-            className="dropbtncontent"
-            id={theme}
-            defaultValue={selectedAreaSort}
-          >
-            Sort According to Area
-          </option>
-          <option className="dropbtncontent" id={theme}>Ascending</option>
-          <option className="dropbtncontent" id={theme}>Descending</option>
-          </select>
-          </div>
-        
-      <div className="dropdown">
-        <select
-          value={selectedRegion}
-          className="drop-select"
-          id={theme}
-          onChange={(event)=>handleRegionChange(event)}
-        >
-          <option
-            value="All"
-            className="dropbtncontent"
-            id={theme}
-            defaultValue={selectedRegion}
-          >
-            Filter By region 
-          </option>
-          {regionData.map((item,index)=>{
-               return <option key={index}>{item}</option>
-              })}
-        </select>
-      </div>
+          onChange={(e) => {
+            setSelectedSort("All");
+            setSelectedAreaSort(e.target.value);
+          }}
+          placeholder="Sort By Area"
+        />
     </section>
-      <Countries filteredData={filteredData} search={search}/>
+      <Countries filtered={filtered} search={search}/>
       </>
   );
 }

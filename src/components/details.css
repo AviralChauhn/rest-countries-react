@@ -1,0 +1,69 @@
+.countryContainer{
+    display: flex;
+    margin-top: 5rem;
+    margin-left: 5vw;
+}
+.parentContainer#dark{
+    background-color: var(--Very-Dark-Blue);
+}
+.contentDiv{
+    /* padding-left: 10vw; */
+    padding-top: 5vh;
+    font-size: 1.2rem;
+    /* align-items: center; */
+}
+.flagImg{
+    height: 45vh;
+}
+
+.contentDiv-c button{
+    margin-inline: 5px;
+    padding-block: 1vh;
+    padding-inline: 2vw;
+    border-radius: 5px;
+    border: none;
+    box-shadow:2px 2px 5px rgba(5, 5, 5, 0.413);
+}
+.backButton{
+    margin-left: 5vw;
+    cursor: pointer;
+    margin-top: 8vh;
+    padding-block: 2vh;
+    padding-right: 4vw;
+    padding-left: 2vw;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 2px 2px 5px rgba(5, 5, 5, 0.413);
+}
+
+.parentContainer{
+    height: 100vh;
+}
+.countryDetails{
+   margin-left: 8vw;
+   padding-top: 7vh;
+}
+.contentDiv {
+    display: grid;
+    grid-template-areas:
+      "a b"
+      "c c";
+  grid-column-gap: 10vw;
+  grid-row-gap: 8vh;
+  }
+  
+ .contentDiv-a{
+      grid-area: a;
+  }
+  
+.contentDiv-b{
+      grid-area: b;
+  }
+  
+.contentDiv-c{
+      grid-area: c;
+  }
+  .loader{
+    display: flex;
+    justify-content: center;
+  }

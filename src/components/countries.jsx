@@ -3,11 +3,12 @@ import './countries.css'
 import './FeatureBar.css'
 import { ThemeContext } from '../App.jsx'
 import { ThreeCircles } from 'react-loader-spinner'
+import { Link } from 'react-router-dom'
 // import FeatureBar from './FeatureBar'
 const API_URL="https://restcountries.com/v3.1/all"
 export default function Countries(props) {
   const {theme}=useContext(ThemeContext)
-    const {filteredData,search}=props;
+    const {filtered,search}=props;
     // console.log(filteredData)
     // let [country,setCountry]=useState([])
     // const [search,setSearch]=useState("");
@@ -37,10 +38,13 @@ export default function Countries(props) {
     // }
   return (
     // <section>
+    
     <section className='information-section' id={theme}>
-      {filteredData.length?(
-      filteredData.map((item)=>{
-      return <div className='cardContainer' key={item.name.common}> 
+      {filtered.length?(
+      filtered.map((item)=>{
+      return( 
+      <Link key={`${item.ccn3}`} to={`/country/${item.ccn3}`} style={{textDecoration:"none",color: "var(--Very-Dark-Blue-Light-mode : hsl(200, 15%, 8%))"}}>
+      <div className='cardContainer' key={item.name.common}> 
        <img src={item.flags.png} alt={item.name.common} className='flag-img'/>
         <h3 className='country-name'>{item.name.common}</h3>
         <ul>
@@ -49,6 +53,7 @@ export default function Countries(props) {
         <li><span>Region: </span>{item.region}</li>
         </ul>
         </div>
+        </Link>)
 })):(!search?(<ThreeCircles
   visible={true}
   height="100"

@@ -21,9 +21,11 @@ body{
     margin-inline: 2vw;
     padding-bottom: 4vh;
     background-color: var(--White);
+    border-radius: 5px;
     color: black;
     box-shadow: 2px 2px 5px rgba(5, 5, 5, 0.413);
-    
+    overflow: hidden;
+
 }
 .search-box{
     background-color: white;
@@ -58,7 +60,6 @@ body{
     justify-content: left;
     align-items: left;
 }
-
 span{
     /* display: flex; */
     /* width: fit-content; */

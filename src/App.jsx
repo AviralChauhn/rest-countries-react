@@ -1,7 +1,9 @@
 import React, {useState, useEffect,createContext } from 'react'
-// import Countries from './components/countries'
 import NavBar from './components/NavBar'
+import Error from './Error';
 import FeatureBar from './components/FeatureBar'
+import Details from './components/details';
+import { BrowserRouter,Route,Routes } from 'react-router-dom';
 import './App.css';
 const API_URL="https://restcountries.com/v3.1/all"
 export const ThemeContext=createContext(null)
@@ -10,11 +12,6 @@ function App() {
   let [country,setCountry]=useState([])
   const fetchData=()=>{
     fetch(API_URL).then((data)=>{
-      if(!data.ok){
-        console.log(1)
-        // return (<h2>{`HTTP error Status:${response.status}`}</h2>)
-        throw new Error(`HTTP error Status:${response.status}`) 
-      }
       return data.json()
     })
     .then((data)=>{setCountry(data)})
@@ -26,17 +23,20 @@ function App() {
   const toggleTheme=()=>{
     setTheme((curr)=>(curr==="light")?"dark":"light")
   }
-  // console.log(country)
-  // console.log(countryData)
+  const codes=country.reduce((acc,curr)=>{
+    acc[curr.cca3]=curr.name.common
+    return acc
+  },{})
   return (
     <ThemeContext.Provider value={{theme,toggleTheme}}>
-    <div>
+      <BrowserRouter>
       <NavBar/>
-      {/* <div id={theme}> */}
-      <FeatureBar country={country}/>
-      {/* </div> */}
-      {/* <Countries/> */}
-    </div>
+      <Routes>
+      <Route path='/' element={<FeatureBar country={country}/>}/>
+      <Route path='/country/:id' element={<Details codes={codes}/>}/>
+      <Route path='*' element={<Error/>}/>
+      </Routes>
+      </BrowserRouter>
     </ThemeContext.Provider>
   )
 }
