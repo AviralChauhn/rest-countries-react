@@ -44,11 +44,12 @@
 i{background-color: transparent;}
 .countryDetails{
    margin-left: 8vw;
-   width: 100vw;
    padding-top: 7vh;
+   width: auto;
 }
 .contentDiv {
     display: grid;
+    width: auto;
     grid-template-areas:
       "a b"
       "c c";
@@ -72,8 +73,13 @@ i{background-color: transparent;}
     justify-content: center;
   }
   @media(max-width:750px){
+    .parentContainer{
+        padding-left: 4vw;
+        padding-right: 4vw;
+    }
     .countryContainer{
         flex-direction: column;
+        width: auto;
         margin-left: 0;
     }
     .contentDiv{
@@ -84,6 +90,8 @@ i{background-color: transparent;}
     }
     .countryDetails{
         margin-left: 4vw;
+        width: auto;
+        margin-left: 1vw;
     }
     .flagImg{
         height: 100%;
@@ -92,7 +100,7 @@ i{background-color: transparent;}
     }
     .imgContainer{
         height: 35vh;
-        width: 100vw;
+        /* width: 100vw; */
         display: flex;
         justify-content: center;
     }

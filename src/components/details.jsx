@@ -33,9 +33,9 @@ const Details = (props) => {
      {details.map((item)=>{
        return  <>
         <div className='countryContainer'>
-        <div className='imgContainer'>
+        {/* <div className='imgContainer'> */}
         <img src={item.flags.png} alt={item.name.common} className='flagImg'/>
-        </div>
+        {/* </div> */}
         <div className='countryDetails'>
         <h1>{item.name.common}</h1>
         <div className='contentDiv'>
