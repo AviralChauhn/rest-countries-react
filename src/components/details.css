@@ -19,6 +19,7 @@
 }
 .flagImg{
     height: 45vh;
+    width: 40vw;
 }
 
 .contentDiv-c button{
@@ -43,6 +44,7 @@
 i{background-color: transparent;}
 .countryDetails{
    margin-left: 8vw;
+   width: 100vw;
    padding-top: 7vh;
 }
 .contentDiv {
@@ -85,8 +87,8 @@ i{background-color: transparent;}
     }
     .flagImg{
         height: 100%;
-        width: 95%;
-        padding-right: 4vw;
+        width: 98%;
+        padding-right: 0.5rem;
     }
     .imgContainer{
         height: 35vh;
