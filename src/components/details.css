@@ -88,7 +88,7 @@ i{background-color: transparent;}
     .flagImg{
         height: 100%;
         width: 98%;
-        padding-right: 0.5rem;
+        /* padding-right: 0.5rem; */
     }
     .imgContainer{
         height: 35vh;
