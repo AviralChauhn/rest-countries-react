@@ -72,7 +72,6 @@ i{background-color: transparent;}
   @media(max-width:750px){
     .countryContainer{
         flex-direction: column;
-        width: 100vw;
         margin-left: 0;
     }
     .contentDiv{
@@ -87,7 +86,7 @@ i{background-color: transparent;}
     .flagImg{
         height: 100%;
         width: 95%;
-        padding-right: 5vw;
+        padding-right: 4vw;
     }
     .imgContainer{
         height: 35vh;
